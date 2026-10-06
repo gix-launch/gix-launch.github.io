@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sponsor feedback · Launch Studio</title>
+<link rel="icon" href="assets/logos/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="feedback">
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Sponsor feedback</div>
+    <h1>How is your team doing?</h1>
+    <p class="lede">Periodically during Launch Studio, we’ll ask you to share how things are going with your sponsored Launch Project and MSTI student team. It takes about two minutes.</p>
+  </div>
+  <section>
+    <div class="contact-grid">
+      <div>
+        <h2 style="font-size:24px">What happens next</h2>
+        <ul class="rows feedback-steps">
+          <li><h3>Below 3 stars</h3><p>A faculty or staff member will reach out to set up a time to discuss your feedback more thoroughly.</p></li>
+          <li><h3>3 to 5 stars</h3><p>Check “I’d like to discuss my feedback” and we’ll reach out too.</p></li>
+          <li><h3>Check-in windows</h3><div><p>We ask for a rating twice a quarter, after each review:</p><ul class="windows" id="windows"></ul></div></li>
+          <li><h3>Any time</h3><p>You don’t need to wait for a check-in. <a href="contact.html">Contact us</a> whenever there is something we should know.</p></li>
+        </ul>
+      </div>
+      <div class="box" id="feedback-box">
+        <h3>Share your feedback</h3>
+        <form id="feedback-form" novalidate>
+          <div class="field"><label for="f-project">Your project</label>
+            <select id="f-project" name="project" aria-describedby="e-project"></select><div class="field-error" id="e-project"></div></div>
+          <div class="field"><label for="f-name">Name</label>
+            <input id="f-name" name="name" autocomplete="name" aria-describedby="e-name"><div class="field-error" id="e-name"></div></div>
+          <div class="field"><label for="f-organization">Company/Organization</label>
+            <input id="f-organization" name="organization" autocomplete="organization" aria-describedby="e-organization"><div class="field-error" id="e-organization"></div></div>
+
+          <fieldset class="field rating" id="f-rating" aria-describedby="e-rating">
+            <legend>Please rate the work of your Launch Studio team so far, taking into consideration team communication and project progress.</legend>
+            <div class="stars" id="stars"></div>
+            <span class="star-caption" id="rating-caption" aria-live="polite">Not rated yet</span>
+            <div class="field-error" id="e-rating"></div>
+          </fieldset>
+          <p class="followup" id="followup-low" hidden>Thank you for letting us know. A faculty or staff member will reach out to set up a time to discuss your feedback.</p>
+          <label class="check" id="followup-ask" hidden><input type="checkbox" name="discuss"> I’d like to discuss my feedback with a faculty or staff member.</label>
+
+          <div class="field"><label for="f-comments">Please add any additional information, feedback, or insights you wish for the course faculty and support staff to be aware of. <span class="muted">(optional)</span></label>
+            <textarea id="f-comments" name="comments" aria-describedby="e-comments"></textarea><div class="field-error" id="e-comments"></div></div>
+          <div class="field"><label for="f-questions">Please share any questions you have at this time. <span class="muted">(optional)</span></label>
+            <textarea id="f-questions" name="questions" class="short" aria-describedby="e-questions"></textarea><div class="field-error" id="e-questions"></div></div>
+
+          <!-- Spam trap: hidden from people, but bots that fill every field give themselves away. -->
+          <div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
+
+          <button class="btn" type="submit" id="submit">Send feedback</button>
+          <div class="form-status" id="form-status" role="status"></div>
+          <div class="fallback" id="fallback" hidden>
+            <a class="btn ghost" id="fallback-email" href="#">Open email draft</a>
+            <button class="btn ghost" type="button" id="fallback-copy">Copy my answers</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/js/assignments.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/feedback-form.js"></script>
+<script src="assets/js/feedback.js"></script>
+</body>
+</html>

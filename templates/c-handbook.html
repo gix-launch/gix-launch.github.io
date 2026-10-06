@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone Handbook — Template C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbfd;
+    --panel: #ffffff;
+    --ink: #1d1b26;
+    --muted: #64607a;
+    --line: #e7e5ef;
+    --purple: #4b2e83;
+    --purple-soft: #efeaf8;
+    --gold: #b7a57a;
+    --gold-soft: #f6f2e7;
+    --sans: "IBM Plex Sans", system-ui, sans-serif;
+    --serif: "IBM Plex Serif", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15.5px/1.6 var(--sans); }
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  aside { position: sticky; top: 0; height: 100vh; border-right: 1px solid var(--line); background: var(--panel); padding: 28px 20px; display: flex; flex-direction: column; gap: 24px; }
+  .mark { display: flex; gap: 10px; align-items: center; }
+  .mark .sq { width: 34px; height: 34px; border-radius: 8px; background: var(--purple); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+  .mark div:last-child { font-weight: 600; line-height: 1.2; }
+  .mark small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; }
+  .toc a { display: block; padding: 7px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 14px; }
+  .toc a:hover { background: var(--bg); color: var(--ink); }
+  .toc a.active { background: var(--purple-soft); color: var(--purple); font-weight: 600; }
+  .role { margin-top: auto; }
+  .role label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 3px; margin-top: 6px; }
+  .seg button { border: 0; background: transparent; padding: 8px; border-radius: 8px; font: 500 14px var(--sans); color: var(--muted); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--panel); color: var(--purple); box-shadow: 0 1px 3px rgba(30,20,60,.12); }
+
+  main { padding: 48px 56px 96px; max-width: 1040px; }
+  .crumb { color: var(--muted); font-size: 13px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 42px; margin: 6px 0 10px; letter-spacing: -.01em; }
+  .lede { color: var(--muted); font-size: 18px; max-width: 680px; margin: 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 32px 0 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .stat strong { display: block; font-size: 26px; color: var(--purple); }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  section { padding-top: 56px; }
+  h2 { font-size: 24px; margin: 0 0 6px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .callout { background: var(--gold-soft); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 14px; margin-bottom: 20px; }
+
+  .timeline { position: relative; margin: 0; padding: 0; list-style: none; }
+  .timeline::before { content: ""; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+  .timeline li { position: relative; padding: 0 0 22px 40px; }
+  .timeline .dot { position: absolute; left: 4px; top: 6px; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--purple); background: var(--panel); }
+  .timeline li.done .dot { background: var(--purple); }
+  .timeline li.next .dot { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 0 5px var(--gold-soft); }
+  .timeline .when { font-size: 13px; color: var(--muted); }
+  .timeline h3 { margin: 2px 0; font-size: 17px; }
+  .timeline p { margin: 0; color: var(--muted); }
+  .badge { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 1px 8px; border-radius: 999px; background: var(--purple-soft); color: var(--purple); margin-left: 6px; vertical-align: 2px; }
+  .timeline li.dim { opacity: .4; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .chip { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 5px 12px; font: 13px var(--sans); color: var(--muted); cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--purple); border-color: var(--purple); color: #fff; }
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .project { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .project .head { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+  .project h3 { margin: 0; font-size: 18px; }
+  .project .sp { color: var(--purple); font-weight: 500; font-size: 14px; }
+  .project .sector { font-size: 12px; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; white-space: nowrap; }
+  .project p { color: var(--muted); margin: 10px 0; font-size: 14.5px; }
+  .project .sk { font-size: 12.5px; color: var(--muted); }
+
+  .checklist { list-style: none; padding: 0; margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+  .checklist li { padding: 14px 18px 14px 48px; border-bottom: 1px solid var(--line); position: relative; }
+  .checklist li:last-child { border-bottom: 0; }
+  .checklist li::before { content: "✓"; position: absolute; left: 18px; top: 13px; width: 20px; height: 20px; border-radius: 6px; background: var(--purple-soft); color: var(--purple); font-size: 12px; display: grid; place-items: center; font-weight: 700; }
+
+  table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); font-size: 14.5px; vertical-align: top; }
+  th { background: var(--bg); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  tfoot td { font-weight: 600; background: var(--bg); }
+  tr.involved td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto; }
+  .tabs button { border: 0; background: none; padding: 10px 14px; font: 500 14px var(--sans); color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .tabs button[aria-selected="true"] { color: var(--purple); border-bottom-color: var(--purple); }
+  .levels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .lvl { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 14.5px; }
+  .lvl b { display: block; margin-bottom: 6px; }
+  .lvl .bar { height: 4px; border-radius: 2px; background: var(--purple); margin-bottom: 12px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+    .toc { display: flex; flex-wrap: wrap; }
+    main { padding: 32px 16px 64px; }
+    .stats, .projects, .levels { grid-template-columns: 1fr 1fr; }
+    .table-scroll { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside>
+    <div class="mark"><div class="sq">540</div><div id="mark-title"></div></div>
+    <nav class="toc" id="toc">
+      <a href="#overview">Overview</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#projects">Sponsors &amp; projects</a>
+      <a href="#expectations">Expectations</a>
+      <a href="#assignments">Assignments</a>
+      <a href="#rubric">Rubric</a>
+    </nav>
+    <div class="role">
+      <label>Viewing as</label>
+      <div class="seg" role="group" aria-label="Audience">
+        <button data-role="sponsors" aria-pressed="true">Sponsor</button>
+        <button data-role="students" aria-pressed="false">Student</button>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <section id="overview" style="padding-top:0">
+      <div class="crumb" id="crumb"></div>
+      <h1>Capstone Sponsor Handbook</h1>
+      <p class="lede" id="tagline"></p>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section id="milestones">
+      <h2>Milestones</h2>
+      <p class="sub" id="ms-sub"></p>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <section id="projects">
+      <h2>Sponsors &amp; projects</h2>
+      <p class="sub">Filter by the skills each project needs.</p>
+      <div class="chips" id="chips"></div>
+      <div class="projects" id="project-grid"></div>
+    </section>
+
+    <section id="expectations">
+      <h2 id="exp-title"></h2>
+      <p class="sub">Switch the “Viewing as” toggle to see the other side of the agreement.</p>
+      <ul class="checklist" id="exp-list"></ul>
+    </section>
+
+    <section id="assignments">
+      <h2>Assignments &amp; weights</h2>
+      <p class="sub">Rows marked in gold involve sponsor sign-off, feedback, or evaluation.</p>
+      <div class="table-scroll"><table id="assign-table"></table></div>
+    </section>
+
+    <section id="rubric">
+      <h2>Grading rubric</h2>
+      <p class="sub">Select a criterion to see the four performance levels.</p>
+      <div class="tabs" role="tablist" id="rubric-tabs"></div>
+      <div class="levels" id="rubric-levels"></div>
+    </section>
+  </main>
+</div>
+
+<script src="shared/data.js"></script>
+<script>
+(() => {
+  const D = window.CAPSTONE;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const fmt = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "long", day: "numeric", year: "numeric" });
+  const today = new Date().toISOString().slice(0, 10);
+  const nextIdx = D.milestones.findIndex((m) => m.date >= today);
+  const SPONSOR_ROLES_NONE = ["Optional demo"];
+  const SPONSOR_OWNERS = ["Sponsors", "Both"];
+
+  let state = { role: "sponsors", skill: "All", tab: 0 };
+  const setState = (patch) => { state = { ...state, ...patch }; render(); };
+
+  $("mark-title").innerHTML = `${esc(D.course)} Capstone<small>${esc(D.program)}</small>`;
+  $("crumb").textContent = `${D.year} · Sponsor & student guide`;
+  $("tagline").textContent = D.tagline;
+
+  const allSkills = ["All", ...new Set(D.sponsors.flatMap((s) => s.skills))];
+  const sponsorHours = "1–2 hrs/wk";
+  $("stats").innerHTML = [
+    [D.sponsors.length, "sponsored projects"],
+    [D.sponsors.reduce((n, s) => n + s.team, 0), "students"],
+    [D.milestones.length, "milestones"],
+    [sponsorHours, "sponsor time"],
+  ].map(([v, l]) => `<div class="stat"><strong>${v}</strong><span>${l}</span></div>`).join("");
+
+  function renderTimeline() {
+    const sponsorView = state.role === "sponsors";
+    $("ms-sub").textContent = sponsorView
+      ? "Milestones that need you are tagged “Your attendance”. Others are shown faded."
+      : "All course milestones. Sponsor-facing events are tagged.";
+    $("timeline").innerHTML = D.milestones.map((m, i) => {
+      const cls = [nextIdx === -1 || i < nextIdx ? "done" : i === nextIdx ? "next" : "",
+                   sponsorView && !SPONSOR_OWNERS.includes(m.owner) ? "dim" : ""].join(" ");
+      const tag = !SPONSOR_OWNERS.includes(m.owner) ? "" : `<span class="badge">${sponsorView ? "Your attendance" : "With sponsor"}</span>`;
+      return `<li class="${cls}"><span class="dot"></span>
+        <div class="when">${fmt(m.date)}${i === nextIdx ? " · <strong>Up next</strong>" : ""}</div>
+        <h3>${esc(m.title)}${tag}</h3><p>${esc(m.detail)}</p></li>`;
+    }).join("");
+  }
+
+  function renderProjects() {
+    $("chips").innerHTML = allSkills.map((k) => `<button class="chip" data-skill="${esc(k)}" aria-pressed="${k === state.skill}">${esc(k)}</button>`).join("");
+    const list = D.sponsors.filter((s) => state.skill === "All" || s.skills.includes(state.skill));
+    $("project-grid").innerHTML = list.map((s) => `
+      <article class="project">
+        <div class="head"><div><h3>${esc(s.project)}</h3><div class="sp">${esc(s.name)} · ${esc(s.contact)}</div></div><span class="sector">${esc(s.sector)}</span></div>
+        <p>${esc(s.summary)}</p>
+        <div class="sk">${s.skills.map(esc).join(" · ")} — team of ${s.team}</div>
+      </article>`).join("");
+  }
+
+  function renderExpectations() {
+    const isSponsor = state.role === "sponsors";
+    $("exp-title").textContent = isSponsor ? "What we ask of sponsors" : "What we ask of students";
+    $("exp-list").innerHTML = D.expectations[state.role].map((e) => `<li>${esc(e)}</li>`).join("");
+  }
+
+  function renderAssignments() {
+    const total = D.assignments.reduce((n, a) => n + a.weight, 0);
+    $("assign-table").innerHTML =
+      `<thead><tr><th>Assignment</th><th>Due</th><th>Sponsor role</th><th>Weight</th></tr></thead><tbody>` +
+      D.assignments.map((a) => `<tr class="${SPONSOR_ROLES_NONE.includes(a.sponsorRole) ? "" : "involved"}">
+        <td><strong>${esc(a.name)}</strong><br><span style="color:var(--muted)">${esc(a.description)}</span></td>
+        <td style="white-space:nowrap">${fmt(a.due).replace(/^\w+, /, "")}</td>
+        <td>${esc(a.sponsorRole)}</td><td>${a.weight}%</td></tr>`).join("") +
+      `</tbody><tfoot><tr><td colspan="3">Total</td><td>${total}%</td></tr></tfoot>`;
+  }
+
+  function renderRubric() {
+    $("rubric-tabs").innerHTML = D.rubric.map((r, i) =>
+      `<button role="tab" data-tab="${i}" aria-selected="${i === state.tab}">${esc(r.criterion)} · ${r.weight}%</button>`).join("");
+    const r = D.rubric[state.tab];
+    $("rubric-levels").innerHTML = r.levels.map((l, j) => `
+      <div class="lvl"><div class="bar" style="opacity:${1 - j * 0.25}"></div><b>${D.rubricLevels[j]}</b>${esc(l)}</div>`).join("");
+  }
+
+  function render() {
+    document.querySelectorAll(".seg button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.role === state.role));
+    renderTimeline(); renderProjects(); renderExpectations(); renderAssignments(); renderRubric();
+  }
+
+  document.querySelector(".seg").addEventListener("click", (e) => { const r = e.target.dataset.role; if (r) setState({ role: r }); });
+  $("chips").addEventListener("click", (e) => { const k = e.target.dataset.skill; if (k) setState({ skill: k }); });
+  $("rubric-tabs").addEventListener("click", (e) => { const t = e.target.dataset.tab; if (t !== undefined) setState({ tab: Number(t) }); });
+
+  // Highlight the active section in the sidebar
+  const links = [...document.querySelectorAll("#toc a")];
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+  }), { rootMargin: "-30% 0px -60% 0px" });
+  document.querySelectorAll("main section").forEach((s) => io.observe(s));
+
+  render();
+})();
+</script>
+</body>
+</html>

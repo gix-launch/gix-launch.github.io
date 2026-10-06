@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · Launch Studio</title>
+<link rel="icon" href="assets/logos/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="home">
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="headline"></h1>
+    <p class="lede one-line" id="tagline"></p>
+    <div class="countdown" id="countdown" hidden></div>
+    <div class="progress-grid" id="progress"></div>
+  </div>
+
+  <section>
+    <h2>Spirit of Launch projects</h2>
+    <div class="journey" id="journey"></div>
+    <p class="callout" style="margin-top:24px" id="gate-note"></p>
+  </section>
+
+  <section>
+    <h2>Schedule</h2>
+    <div id="gantt"></div>
+  </section>
+
+  <section>
+    <h2>Expectations</h2>
+    <div class="two">
+      <div class="box commit students"><h3>Students commit to</h3><ol id="exp-students"></ol></div>
+      <div class="box commit sponsors"><h3>Sponsors commit to</h3><ol id="exp-sponsors"></ol></div>
+    </div>
+    <p style="margin-top:20px"><a class="link-arrow" href="sponsors.html">Read the full sponsor guide</a></p>
+  </section>
+
+  <section>
+    <h2>Project overview</h2>
+    <div id="track-legend"></div>
+    <div class="cards" id="project-cards"></div>
+  </section>
+
+  <section class="thanks">
+    <h2>Thank you to our sponsors</h2>
+    <div class="thanks-grid" id="thanks"></div>
+  </section>
+
+  <section id="alumni" hidden>
+    <h2>Where Launch projects go</h2>
+    <p class="note">Outcomes from past cohorts and what sponsors said about working with a Launch team.</p>
+    <div class="cards three" id="alumni-outcomes"></div>
+    <div class="testimonials" id="alumni-quotes"></div>
+  </section>
+
+  <section>
+    <h2>Interested in sponsoring a project?</h2>
+    <div class="sponsor-cta" id="sponsor-cta"></div>
+  </section>
+</main>
+
+<script src="assets/js/assignments.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/project-card.js"></script>
+<script src="assets/js/home.js"></script>
+<script src="assets/js/gantt.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sponsor guide · Launch Studio</title>
+<link rel="icon" href="assets/logos/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="sponsors">
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Industry sponsor overview</div>
+    <h1>Working with a Launch team</h1>
+    <p class="lede" id="lede"></p>
+  </div>
+
+  <section>
+    <h2>What you receive</h2>
+    <div class="cards three" id="outcomes"></div>
+    <p class="note" style="margin-top:20px">Students are expected to explain their decisions, document limitations, and demonstrate their individual contributions.</p>
+  </section>
+
+  <section>
+    <h2>Your role as a sponsor</h2>
+    <ul class="rows" id="role"></ul>
+    <p class="callout" style="margin-top:20px">Every week, the team shares progress, setbacks, risks, and issues requiring your input. <a href="contact.html">Contact us</a> if updates or meeting preparation lapse.</p>
+  </section>
+
+  <section>
+    <h2>Students take the initiative</h2>
+    <div class="cards three" id="communication"></div>
+    <p class="callout" style="margin-top:20px" id="windows-note"></p>
+    <p class="callout" style="margin-top:12px">We also welcome feedback in real time. <a href="feedback.html">Share feedback on your team</a> or <a href="contact.html">contact the instructors</a> whenever there is something we should know; you do not need to wait for a scheduled check-in.</p>
+  </section>
+
+  <section>
+    <h2>Hands-on practice in product development</h2>
+    <ul class="rows" id="learning"></ul>
+  </section>
+
+  <section>
+    <div class="eyebrow" id="alpha-kicker"></div>
+    <h2>What to expect from the first complete prototype</h2>
+    <p class="note" id="alpha-lead"></p>
+    <div class="cards two" id="alpha"></div>
+  </section>
+
+  <section>
+    <h2>Confidential information and AI</h2>
+    <ul class="rows" id="confidentiality"></ul>
+  </section>
+</main>
+
+<script src="assets/js/assignments.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+  (function () {
+    const { D, U, assignmentById, weekHref } = window.Site;
+    const $ = (id) => document.getElementById(id);
+    const rows = (list) => list.map((r) => `<li><h3>${U.esc(r.title)}</h3><p>${U.esc(r.text)}</p></li>`).join("");
+    const cards = (list, cls) => list.map((c, i) => `<article class="card accent ${cls ? cls(i) : ""}"><h3>${U.esc(c.title)}</h3><p>${U.esc(c.text)}</p></article>`).join("");
+
+    $("lede").textContent = `${D.tagline} ${D.courseLine}, ${D.dates}.`;
+    $("outcomes").innerHTML = cards(D.outcomes);
+    $("role").innerHTML = rows(D.sponsorRole);
+    $("communication").innerHTML = cards(D.communication);
+    $("learning").innerHTML = rows(D.learning);
+    $("confidentiality").innerHTML = rows(D.confidentiality);
+
+    const gate = assignmentById(D.alphaDemo.gate);
+    $("alpha-kicker").innerHTML = gate
+      ? `Working-system demo · <a href="${weekHref(gate.due, gate.id)}">Gate ${gate.number}</a> · ${U.fmtDate(gate.due, { month: "short", day: "numeric", year: "numeric" })}${gate.tentative ? " (tentative)" : ""}`
+      : "Working-system demo";
+    $("alpha-lead").textContent = D.alphaDemo.lead;
+
+    const short = (iso) => U.fmtDate(iso, { month: "short", day: "numeric" });
+    const windows = (D.feedback && D.feedback.windows) || [];
+    $("windows-note").innerHTML = windows.length
+      ? `<b>Feedback check-ins:</b> ${windows.map((w) => `${U.esc(w.label)} (${short(w.opens)} – ${short(w.closes)}${w.tentative ? ", tentative" : ""})`).join("; ")}. <a href="feedback.html">Open the feedback form</a>.`
+      : `Feedback check-in dates will be posted here. <a href="feedback.html">Open the feedback form</a>.`;
+    $("alpha").innerHTML = cards(D.alphaDemo.points, (i) => (i === 1 ? "gold" : ""));
+  })();
+</script>
+</body>
+</html>

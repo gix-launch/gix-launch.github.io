@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects · Launch Studio</title>
+<link rel="icon" href="assets/logos/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="projects">
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1>Sponsors &amp; projects</h1>
+    <p class="lede">This year’s industry partners, student-led projects, and the problems our teams are tackling. Select a project to meet the team.</p>
+  </div>
+  <section style="border-top:0;padding-top:8px">
+    <div class="project-filters" id="project-filters" aria-label="Filter projects"></div>
+    <div class="cards" id="cards"></div>
+    <p class="empty" id="cards-empty" hidden>No projects match these filters.</p>
+  </section>
+</main>
+
+<script src="assets/js/assignments.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/project-card.js"></script>
+<script src="assets/js/project-filter.js"></script>
+<script>
+  (function () {
+    const { D } = window.Site;
+    const sponsored = D.projects.filter((p) => !p.studentLed).length;
+    document.getElementById("eyebrow").textContent =
+      `${D.year} · ${D.projects.length} projects · ${sponsored} industry-sponsored, ${D.projects.length - sponsored} student-led`;
+    document.getElementById("cards").innerHTML = D.projects.map(window.projectCard).join("");
+    window.mountProjectFilter({
+      projects: D.projects,
+      trackOrder: window.projectTracks.map((t) => t.name),
+      trackClass: window.projectTrackClass,
+      controls: document.getElementById("project-filters"),
+      cards: document.getElementById("cards"),
+      empty: document.getElementById("cards-empty"),
+    });
+  })();
+</script>
+</body>
+</html>
