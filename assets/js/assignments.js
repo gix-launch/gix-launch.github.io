@@ -1775,7 +1775,7 @@ window.CAPSTONE_ASSIGNMENTS = Object.freeze([
   "due": "2027-03-16",
   "time": null,
   "points": 90.0,
-  "tentative": true,
+  "tentative": false,
   "summary": "Professional execution and readiness review of the built and tested system with instructors, stakeholders, and program leadership.",
   "format": "15 minutes including Q&A; slides locked the night before",
   "deliverables": [

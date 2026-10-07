@@ -50,7 +50,7 @@ window.CAPSTONE = Object.freeze({
     { date: "2027-02-17", title: "Field validation", assignment: "gate-13", sponsor: "Optional", tentative: true,
       detail: "Teams validate the system with domain experts, industry partners, or real users." },
     // `demoDay: true` drives the countdown on the Overview page.
-    { date: "2027-03-17", title: "Final demo & handoff", assignment: "techin-542-final-presentation", sponsor: "Required", tentative: true, demoDay: true,
+    { date: "2027-03-16", title: "Final demo & handoff", assignment: "techin-542-final-presentation", sponsor: "Required", demoDay: true,
       detail: "Final industry-style review, followed by the project archive and six-month launch plan handoff." },
   ],
 
