@@ -4,7 +4,7 @@
 // The site checks the same rules in assets/js/feedback-form.js; keep RATING_MAX, FOLLOW_UP_BELOW, and LIMITS in sync.
 
 // ---- Settings ----
-const NOTIFY = ["luyaoniu@uw.edu"]; // who is emailed about each response; add more addresses to this list
+const NOTIFY = ["luyaoniu@uw.edu", "mlicata@uw.edu", "kacannon@uw.edu"]; // who is emailed about each response; add more addresses to this list
 const SHEET_NAME = "Responses";
 const MAX_PER_HOUR = 60; // spam guard: responses accepted per hour across all sponsors
 
