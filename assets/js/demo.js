@@ -1,14 +1,14 @@
-// Demo day page: date, logistics, agenda, calendar export, and the teams presenting.
+// Final Launch Showcase page: date, logistics, agenda, calendar export, and the teams presenting.
 // The date comes from the milestone marked `demoDay`; everything else is in `demoDay` in data.js.
 (function () {
   const { D, U, TODAY, weekHref, statusPill, tentativePill } = window.Site;
   const root = document.getElementById("demo");
   const demo = D.milestones.find((m) => m.demoDay);
   const info = D.demoDay || {};
-  const ICS_FILENAME = "launch-studio-demo-day.ics";
+  const ICS_FILENAME = "launch-studio-final-showcase.ics";
 
   if (!demo) {
-    root.innerHTML = `<div class="hero"><h1>Demo day</h1><p class="lede">The final demo date has not been set yet. Check back soon.</p></div>`;
+    root.innerHTML = `<div class="hero"><h1>Final Launch Showcase</h1><p class="lede">The Final Launch Showcase date has not been set yet. Check back soon.</p></div>`;
     return;
   }
 
@@ -56,8 +56,8 @@
 
   root.innerHTML = `
     <div class="hero">
-      <div class="eyebrow">${U.esc(D.year)} · Final demo &amp; handoff</div>
-      <h1>Demo day</h1>
+      <div class="eyebrow">${U.esc(D.year)} · Final review &amp; prototype transfer</div>
+      <h1>Final Launch Showcase</h1>
       <p class="lede">${U.esc(demo.detail)}</p>
       <div class="demo-facts">
         <div><b>When</b>${U.esc(long)}${tentativePill(demo)}<br><span class="muted">${U.esc(timeText)}</span></div>
@@ -82,7 +82,7 @@
     <section>
       <h2>Bringing colleagues</h2>
       <p class="callout">${U.esc(info.guests || "Sponsors are welcome to bring colleagues.")}
-        ${info.rsvp ? ` <a href="${U.esc(info.rsvp)}" target="_blank" rel="noopener">RSVP here</a>.` : ` <a href="contact.html">Contact us</a> with a head count.`}</p>
+        ${info.rsvp ? ` <a href="${U.esc(info.rsvp)}" target="_blank" rel="noopener">RSVP here</a>.` : ` Check back soon to register for the event.`}</p>
     </section>
 
     <section>

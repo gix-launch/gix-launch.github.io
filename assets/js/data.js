@@ -31,16 +31,16 @@ window.CAPSTONE = Object.freeze({
     { quarter: "autumn", name: "Define", text: "Set a feasible product scope and launch strategy." },
     { quarter: "winter", name: "Build", text: "Build and test components as they become a working prototype." },
     { quarter: "winter", name: "Validate", text: "Evaluate the system with users and improve reliability." },
-    { quarter: "winter", name: "Handoff", text: "Deliver the project archive and proposed launch plan." },
+    { quarter: "winter", name: "Prototype transfer", text: "Transfer the project archive and proposed launch plan to the sponsor." },
   ],
 
   // Sponsor calendar. `assignment` links to a gate or presentation id in assignments.js.
-  // `sponsor` is the attendance expectation: "Optional", "Encouraged", or "Required" (the final demo).
+  // `sponsor` is the attendance expectation: "Optional", "Encouraged", or "Required" (the Final Launch Showcase).
   milestones: [
     { date: "2026-11-12", title: "Autumn mid-term review", assignment: "techin-540-mid-term-presentation", sponsor: "Optional",
       detail: "Teams present the problem, user, and market, plus their research plan in progress." },
-    { date: "2026-12-10", title: "Autumn final review", assignment: "techin-540-final-presentation", sponsor: "Encouraged",
-      detail: "Research findings, the MVP definition, and the launch strategy, discussed with instructors and sponsors." },
+    { date: "2026-12-10", title: "End of Autumn Quarter Presentation", assignment: "techin-540-final-presentation", sponsor: "Optional",
+      detail: "Research findings, the MVP definition, and the launch strategy, discussed with instructors and sponsors. Sponsors may join virtually; the presentation schedule is coming soon." },
     { date: "2027-01-13", title: "Integration review", assignment: "gate-7", sponsor: "Optional", tentative: true,
       detail: "Subsystem map, each student's Minimum Working System, and a first-pass integration plan." },
     { date: "2027-02-04", title: "Winter mid-quarter review", assignment: "techin-542-mid-quarter-presentation", sponsor: "Optional", tentative: true,
@@ -50,23 +50,23 @@ window.CAPSTONE = Object.freeze({
     { date: "2027-02-17", title: "Field validation", assignment: "gate-13", sponsor: "Optional", tentative: true,
       detail: "Teams validate the system with domain experts, industry partners, or real users." },
     // `demoDay: true` drives the countdown on the Overview page.
-    { date: "2027-03-16", title: "Final demo & handoff", assignment: "techin-542-final-presentation", sponsor: "Required", demoDay: true,
-      detail: "Final industry-style review, followed by the project archive and six-month launch plan handoff." },
+    { date: "2027-03-16", title: "Final Launch Showcase", assignment: "techin-542-final-presentation", sponsor: "Required", demoDay: true,
+      detail: "Final industry-style review, followed by the transfer of project deliverables to the sponsor: the project archive and six-month launch plan." },
   ],
 
-  // Demo day page (demo.html) and its calendar export. The date comes from the milestone marked `demoDay`.
+  // Final Launch Showcase page (demo.html) and its calendar export. The date comes from the milestone marked `demoDay`.
   // `start`/`end` are local 24-hour times; leave both null for an all-day calendar entry until the time is set.
   // `location`/`address` may be null until confirmed. `rsvp` is an optional link (form or email) for sponsors.
   demoDay: {
     start: null, end: null,
-    location: null, address: null,
+    location: "Global Innovation Exchange (GIX)", address: "15010 NE 36th St, Redmond, WA 98052",
     rsvp: null,
-    guests: "Sponsors are welcome to bring colleagues. Let us know roughly how many people to expect so we can plan seating and demo stations.",
+    guests: "Sponsors are welcome to bring colleagues. Please register each guest so we have everyone's details and can plan seating and demo stations.",
     agenda: [
       { title: "Welcome", text: "Instructors open the day and introduce the cohort, the two tracks, and how to move between demo stations." },
       { title: "Final presentations", text: "Each team gives an industry-style review: the problem, the evidence behind the product definition, the working system, and what field validation showed." },
       { title: "Demos & posters", text: "Hands-on time at each team's station with the working prototype and poster. Ask hard questions; the teams are ready for them." },
-      { title: "Handoff", text: "Teams hand their sponsor the project archive: presentation, poster, video, prototypes, codebase, and a proposed six-month launch plan." },
+      { title: "Transfer of project deliverables to sponsor", text: "Teams transfer their project deliverables to their sponsor: presentation, poster, video, prototypes, codebase, and a proposed six-month launch plan." },
     ],
   },
 
@@ -79,14 +79,14 @@ window.CAPSTONE = Object.freeze({
   outcomes: [
     { title: "Product definition", text: "User and market research that informs the proposed solution, its scope, and the team’s design decisions." },
     { title: "Tested prototype", text: "A working demonstration, with findings from user testing and field validation." },
-    { title: "Final handoff", text: "A single archive with the presentation, poster, video, prototypes, codebase, and a proposed six-month launch plan." },
+    { title: "Transfer of project deliverables to sponsor", text: "A single archive with the presentation, poster, video, prototypes, codebase, and a proposed six-month launch plan." },
   ],
 
   sponsorRole: [
     { title: "Meet weekly", text: "Plan for about one hour each week across both quarters, in person or remote. The team prepares the agenda and leads the discussion." },
     { title: "Help the team access resources", text: "Connect students with relevant people, data, sites, or equipment, as needed." },
     { title: "Guide decisions early", text: "Clarify priorities and constraints, and flag concerns while the team has time to adjust." },
-    { title: "Join the final demo", text: "Sponsor attendance at the final demo is required. Other reviews and demos are optional." },
+    { title: "Join the Final Launch Showcase", text: "Sponsor attendance at the Final Launch Showcase is required. Other reviews and demos are optional." },
   ],
 
   communication: [
@@ -123,7 +123,7 @@ window.CAPSTONE = Object.freeze({
       "Connect the team with people, data, sites, or equipment as needed.",
       "Clarify priorities and constraints, and flag concerns early.",
       "Share feedback with the program twice per quarter, or any time something comes up.",
-      "Join the final demo; other reviews are optional.",
+      "Join the Final Launch Showcase; other reviews are optional.",
     ],
   },
 
@@ -267,9 +267,9 @@ window.CAPSTONE = Object.freeze({
     // Winter windows are projected like the winter milestones; update them with the Winter 2027 schedule.
     windows: [
       { quarter: "autumn", label: "Autumn check-in 1", opens: "2026-11-12", closes: "2026-11-20", after: "Autumn mid-term review" },
-      { quarter: "autumn", label: "Autumn check-in 2", opens: "2026-12-10", closes: "2026-12-18", after: "Autumn final review" },
+      { quarter: "autumn", label: "Autumn check-in 2", opens: "2026-12-10", closes: "2026-12-18", after: "End of Autumn Quarter Presentation" },
       { quarter: "winter", label: "Winter check-in 1", opens: "2027-02-04", closes: "2027-02-12", after: "Winter mid-quarter review", tentative: true },
-      { quarter: "winter", label: "Winter check-in 2", opens: "2027-03-08", closes: "2027-03-19", after: "Final demo & handoff", tentative: true },
+      { quarter: "winter", label: "Winter check-in 2", opens: "2027-03-08", closes: "2027-03-19", after: "Final Launch Showcase", tentative: true },
     ],
     endpoint: "https://script.google.com/macros/s/AKfycbzARrJGxOMFfNQQTohzy6PStIptTAyRQTpeYLb60uaeNW9SvbJk0WTJS7VI7xnwkrKGkg/exec",
     contact: "luyao",
@@ -283,7 +283,7 @@ window.CAPSTONE = Object.freeze({
 
   // Past cohorts: outcomes and sponsor testimonials, shown on the Overview page under "Where Launch projects go".
   // The section stays hidden while both lists are empty. Only publish quotes with the sponsor's permission.
-  // outcome:     { cohort: "2025–26", sponsor: "Company", title: "Project", text: "What happened after handoff", link: null }
+  // outcome:     { cohort: "2025–26", sponsor: "Company", title: "Project", text: "What happened after the prototype transfer", link: null }
   // testimonial: { quote: "…", name: "Full Name", title: "Role, Company", cohort: "2025–26" }
   alumni: {
     outcomes: [],

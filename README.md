@@ -11,7 +11,7 @@ folder to GitHub Pages / UW web hosting. (Don't publish `ref/` — it holds the 
 | `week.html?id=winter-2` | One page per week: sponsor reviews, gates/presentations due, deliverables, and full rubric. Reached from the **Weeks** menu. |
 | `gates.html` | All 15 gates and 4 presentations by quarter. Passed items are greyed out and the next one is highlighted. |
 | `sponsors.html` | Sponsor guide: outcomes, sponsor role, communication (with feedback check-in dates), alpha-demo expectations, confidentiality & AI |
-| `demo.html` | Demo day: date, time and location, agenda, "Add to calendar" (.ics download and Google Calendar link), guest note, and the teams presenting by track |
+| `demo.html` | Final Launch Showcase: date, time and location, agenda, "Add to calendar" (.ics download and Google Calendar link), guest note, and the teams presenting by track |
 | `projects.html` / `project.html?id=<project id>` | Project cards (filter by track and sponsor; filters are kept in the URL, e.g. `projects.html?track=robotics&sponsor=student-led`) → team page with student photos |
 | `contact.html` | Who to contact by topic (course & academics, teams & students, sponsorship) + message form (opens an email draft) |
 | `feedback.html?project=<project id>` | Sponsor feedback survey (name, company, 1–5 star rating, comments, questions) and the check-in windows. See **Sponsor feedback** below. |
@@ -19,7 +19,7 @@ folder to GitHub Pages / UW web hosting. (Don't publish `ref/` — it holds the 
 ## Updating content
 - **Gates & presentations** come from Canvas. Re-export the courses into `ref/launch I` and `ref/launch II`, then run
   `python3 scripts/import_canvas.py` to regenerate `assets/js/assignments.js`. Only the "Gate…" and "Presentations"
-  assignment groups are imported. Short sponsor-facing summaries and a few cleaned-up deliverable lists live in the
+  assignment groups are imported. Short sponsor-facing summaries, a few renamed titles, and cleaned-up deliverable lists live in the
   `*_OVERRIDES` dictionaries at the top of the script.
 - **Winter dates** are projected from the Winter 2026 export (`shift_days: 364`) and marked *Tentative*. When the
   Winter 2027 course is set up, re-export it and set `shift_days` to `0`, then remove `tentative: true` from the
@@ -30,7 +30,7 @@ folder to GitHub Pages / UW web hosting. (Don't publish `ref/` — it holds the 
   In `data.js`, list them as `{ optedOut: true }` and leave out their name, initials, and photo. The project page
   shows an unnamed "Team member" card, so team sizes stay correct. The roster CSV still has every name, so check new
   rosters against the opt-out list before copying names in. `tests/team-privacy.test.js` checks the four current opt-outs.
-- **Demo day** (`demoDay` in `data.js`): set `start`/`end` (24-hour local time) once the time is known, otherwise the
+- **Final Launch Showcase** (`demoDay` in `data.js`): set `start`/`end` (24-hour local time) once the time is known, otherwise the
   calendar entry is all-day; add `location`/`address` and an optional `rsvp` link. The date itself is the milestone
   marked `demoDay: true`. The calendar file is generated in the browser, so nothing needs a server.
 - **Sponsor attendance** on each milestone is `"Optional"`, `"Encouraged"`, or `"Required"` (`tests/site-data.test.js`).

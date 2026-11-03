@@ -40,14 +40,20 @@ SUMMARY_OVERRIDES = {
     "gate 14": "Turn validation evidence into action: decide what to fix, mitigate, or accept, and implement at least three changes.",
     "gate 15": "Beta system: stable, predictable, and demo-ready, with stability tests, failure modes, and recovery documented.",
     "TECHIN 540 mid-term presentation": "Product review on the problem, user, and market (Gates 1–3) plus the research plan in progress.",
-    "TECHIN 540 final presentation": "Product review on research findings, the MVP, and the launch strategy (Gates 4–6), presented to instructors and sponsors.",
+    "TECHIN 540 final presentation": "Product review on research findings, the MVP, and the launch strategy (Gates 4–6), presented to instructors and sponsors. Optional virtual sponsor attendance — presentation schedule coming soon.",
     "TECHIN 542 mid-quarter presentation": "System review of architecture, Minimum Working Systems, and early integration (Gates 7–9), with a live demo.",
     "TECHIN 542 final presentation": "Professional execution and readiness review of the built and tested system with instructors, stakeholders, and program leadership.",
 }
 
+# Sponsor-facing titles where the Canvas name could be confused with another event.
+# The Autumn "Final Presentation" is not the March Final Launch Showcase.
+TITLE_OVERRIDES = {
+    "TECHIN 540 final presentation": "End of Autumn Quarter Presentation",
+}
+
 FORMAT_OVERRIDES = {
     "TECHIN 540 mid-term presentation": "10-minute presentation with ongoing Q&A",
-    "TECHIN 540 final presentation": "20-minute presentation with Q&A, including the project sponsor",
+    "TECHIN 540 final presentation": "20-minute presentation with Q&A; sponsors may join virtually",
     "TECHIN 542 mid-quarter presentation": "12 minutes including demo and Q&A; poster required",
     "TECHIN 542 final presentation": "15 minutes including Q&A; slides locked the night before",
 }
@@ -204,7 +210,7 @@ def import_course(cfg: dict) -> list[dict]:
             "quarter": cfg["quarter"],
             "type": "gate" if is_gate else "presentation",
             "number": int(gate_no.group(1)) if is_gate and gate_no else None,
-            "title": title,
+            "title": TITLE_OVERRIDES.get(key, title),
             "due": due.strftime("%Y-%m-%d"),
             "time": None if not is_gate else due.strftime("%-I:%M %p").lower(),
             "points": float(text_of(root, "points_possible") or 0),

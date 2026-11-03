@@ -21,7 +21,7 @@
     { id: "gates", label: "Gates & rubrics", href: "gates.html" },
     { id: "projects", label: "Projects", href: "projects.html" },
     { id: "sponsors", label: "Sponsor guide", href: "sponsors.html" },
-    { id: "demo", label: "Demo day", href: "demo.html" },
+    { id: "demo", label: "Final Launch Showcase", href: "demo.html" },
     { id: "feedback", label: "Feedback", href: "feedback.html" },
     { id: "contact", label: "Contact", href: "contact.html" },
   ];

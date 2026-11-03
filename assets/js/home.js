@@ -10,7 +10,7 @@
   $("headline").textContent = D.headline;
   $("tagline").textContent = D.tagline;
 
-  // ---- Demo day countdown ----
+  // ---- Final Launch Showcase countdown ----
   // Live when viewing today; frozen at midnight of the previewed date when ?today= is set.
   const demo = D.milestones.find((m) => m.demoDay);
   const COUNTDOWN_UNITS = [["days", "Days"], ["hours", "Hours"], ["minutes", "Minutes"], ["seconds", "Seconds"]];
@@ -20,13 +20,13 @@
     const target = new Date(demo.date + "T00:00:00").getTime();
     const now = isPreview ? new Date(TODAY + "T00:00:00").getTime() : Date.now();
     const left = U.countdown(now, target);
-    const head = `<div><div class="stat-label">Final demo day${demo.tentative ? " · tentative" : ""}</div>
+    const head = `<div><div class="stat-label">Final Launch Showcase${demo.tentative ? " · tentative" : ""}</div>
       <div class="countdown-date">${U.fmtDate(demo.date, { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</div></div>`;
     const body = left.done
-      ? `<div class="countdown-done">${demo.date === TODAY ? "Demo day is today. See you there!" : "Thank you for joining the final demo."}</div>`
-      : `<div class="countdown-units" role="timer" aria-label="Time until the final demo">${COUNTDOWN_UNITS.map(([k, label]) =>
+      ? `<div class="countdown-done">${demo.date === TODAY ? "The Final Launch Showcase is today. See you there!" : "Thank you for joining the Final Launch Showcase."}</div>`
+      : `<div class="countdown-units" role="timer" aria-label="Time until the Final Launch Showcase">${COUNTDOWN_UNITS.map(([k, label]) =>
           `<div><b>${String(left[k]).padStart(2, "0")}</b><span>${label}</span></div>`).join("")}</div>`;
-    const link = `<a class="btn ghost countdown-link" href="demo.html">Demo day details &amp; calendar</a>`;
+    const link = `<a class="btn ghost countdown-link" href="demo.html">Final Launch Showcase details &amp; calendar</a>`;
     $("countdown").innerHTML = head + body + link;
     return left.done;
   }
