@@ -56,6 +56,11 @@
     return `<div class="g-today" style="--at:${at(TODAY)}"><span>Today</span></div>`;
   }
 
+  // Grid lines (one per week) and the divider between quarters follow the actual quarter lengths.
+  const secondQuarter = WEEKS.find((w) => w.quarter !== WEEKS[0].quarter);
+  root.style.setProperty("--weeks", WEEKS.length);
+  root.style.setProperty("--split", secondQuarter ? at(secondQuarter.start) : 1);
+
   root.innerHTML = `<div class="gantt-scroll"><div class="gantt">${scale()}
     <div class="g-body">${D.assignments.map(row).join("")}${todayLine()}</div></div></div>
     <div class="g-legend">
