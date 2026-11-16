@@ -30,6 +30,7 @@
           quarter: q.id,
           quarterLabel: q.label,
           n: i + 1,
+          finals: i === q.weeks - 1,
           start,
           end: addDays(start, 6),
         });

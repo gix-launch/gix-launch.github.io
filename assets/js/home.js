@@ -78,7 +78,7 @@
       <div class="stat-big">${pct}%</div>
       <div class="bar"><i style="width:${pct}%"></i></div>
       <div class="muted" style="font-size:14px">${next
-        ? `Next review: <b>${U.esc(next.title)}</b> · ${short(next.date)}${next.tentative ? " (tentative)" : ""}`
+        ? `Next review: <b>${U.esc(next.title)}</b> · ${short(next.date)}${next.time ? `, ${U.esc(next.time)}` : ""}${next.tentative ? " (tentative)" : ""}`
         : "All reviews complete."}</div></div>`;
   }
 

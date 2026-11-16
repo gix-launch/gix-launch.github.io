@@ -23,6 +23,14 @@ test("buildWeeks creates Monday–Sunday weeks with stable ids", () => {
   assert.equal(WEEKS[10].end, "2026-12-13");
 });
 
+test("buildWeeks marks only the last week of each quarter as finals", () => {
+  const weeks = U.buildWeeks([
+    { id: "a", label: "A", start: "2026-09-28", weeks: 12 },
+    { id: "b", label: "B", start: "2027-01-04", weeks: 11 },
+  ]);
+  assert.deepEqual(weeks.filter((w) => w.finals).map((w) => w.id), ["a-12", "b-11"]);
+});
+
 test("buildWeeks does not mutate its input", () => {
   const input = [{ id: "q", label: "Q", start: "2026-01-05", weeks: 1 }];
   const snapshot = JSON.stringify(input);

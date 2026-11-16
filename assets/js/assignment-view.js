@@ -37,7 +37,7 @@
     const kind = a.type === "gate" ? "Gate" : "Presentation";
     const when = a.type === "gate"
       ? `Due ${U.fmtDate(a.due, { weekday: "short", month: "short", day: "numeric" })}, ${U.esc(a.time)} PT`
-      : `In class ${U.fmtDate(a.due, { weekday: "short", month: "short", day: "numeric" })}`;
+      : `In class ${U.fmtDate(a.due, { weekday: "short", month: "short", day: "numeric" })}${a.time ? `, ${U.esc(a.time)} PT` : ""}`;
     return `<article class="item ${assignmentStatus(a)}" id="${U.esc(a.id)}">
       <div class="item-head"><h3>${U.esc(a.title)}</h3><span><span class="pill kind">${kind}</span> ${assignmentPill(a)}${tentativePill(a)}</span></div>
       <div class="meta"><span><b>${when}</b></span><span>${U.esc(a.course)}</span>${a.format ? `<span>${U.esc(a.format)}</span>` : ""}</div>

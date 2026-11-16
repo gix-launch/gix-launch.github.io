@@ -13,7 +13,7 @@
   const NOW_WEEK = U.currentWeek(WEEKS, TODAY);
   const page = document.body.dataset.page;
   const dueIn = (w) => U.inWeek(D.assignments, w, "due");
-  const weekName = (w) => (w.n === 11 ? "Finals week" : `Week ${w.n}`);
+  const weekName = (w) => (w.finals ? "Finals week" : `Week ${w.n}`);
 
   const NAV = [
     { id: "home", label: "Overview", href: "index.html" },
@@ -123,7 +123,7 @@
   const weekHref = (iso, anchor) => { const w = weekOf(iso); return w ? `week.html?id=${w.id}${anchor ? "#" + anchor : ""}` : ""; };
   const weekLink = (iso, anchor) => {
     const w = weekOf(iso);
-    return w ? `<a href="${weekHref(iso, anchor)}">${U.esc(w.quarterLabel)} ${w.n === 11 ? "finals" : "wk " + w.n}</a>` : "";
+    return w ? `<a href="${weekHref(iso, anchor)}">${U.esc(w.quarterLabel)} ${w.finals ? "finals" : "wk " + w.n}</a>` : "";
   };
   const assignmentById = (id) => D.assignments.find((a) => a.id === id) || null;
   // Gates and presentations: past ones are done; everything due on the next date is up next.

@@ -47,7 +47,7 @@
       const first = WEEKS.find((w) => w.quarter === q.id);
       return `<span class="g-quarter" style="left:${pct(at(first.start))}">${U.esc(q.label)} · ${U.esc(q.course)}</span>`;
     }).join("");
-    const weeks = WEEKS.map((w) => `<span class="g-week" style="left:${pct(at(w.start))};width:${pct(7 / (WEEKS.length * 7))}" title="${U.esc(w.quarterLabel)} ${weekName(w).toLowerCase()} · ${short(w.start)}">${w.n === 11 ? "F" : w.n}</span>`).join("");
+    const weeks = WEEKS.map((w) => `<span class="g-week" style="left:${pct(at(w.start))};width:${pct(7 / (WEEKS.length * 7))}" title="${U.esc(w.quarterLabel)} ${weekName(w).toLowerCase()} · ${short(w.start)}">${w.finals ? "F" : w.n}</span>`).join("");
     return `<div class="g-row g-head" aria-hidden="true"><span class="g-label"></span><span class="g-track">${quarters}${weeks}</span></div>`;
   }
 

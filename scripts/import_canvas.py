@@ -94,6 +94,11 @@ PRESENTATION_DATE_OVERRIDES = {
     "TECHIN 542 final presentation": 1,
 }
 
+# Confirmed date and time for presentations whose Canvas due date is out of date: key -> (YYYY-MM-DD, time).
+PRESENTATION_SCHEDULE = {
+    "TECHIN 540 final presentation": ("2026-12-14", "10:30 am – 2 pm"),
+}
+
 
 def text_of(el: ET.Element, tag: str) -> str:
     found = el.find("c:" + tag, NS)
@@ -211,8 +216,9 @@ def import_course(cfg: dict) -> list[dict]:
             "type": "gate" if is_gate else "presentation",
             "number": int(gate_no.group(1)) if is_gate and gate_no else None,
             "title": TITLE_OVERRIDES.get(key, title),
-            "due": due.strftime("%Y-%m-%d"),
-            "time": None if not is_gate else due.strftime("%-I:%M %p").lower(),
+            "due": PRESENTATION_SCHEDULE[key][0] if key in PRESENTATION_SCHEDULE else due.strftime("%Y-%m-%d"),
+            "time": PRESENTATION_SCHEDULE[key][1] if key in PRESENTATION_SCHEDULE
+            else (None if not is_gate else due.strftime("%-I:%M %p").lower()),
             "points": float(text_of(root, "points_possible") or 0),
             "tentative": cfg["shift_days"] != 0,
             "summary": SUMMARY_OVERRIDES.get(key) or extract_summary(body),

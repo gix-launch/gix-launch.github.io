@@ -18,7 +18,7 @@
   function reviewItem(m) {
     const i = D.milestones.indexOf(m);
     return `<div class="item"><div class="item-head"><h3>${U.esc(m.title)}</h3><span>${statusPill(i)}${tentativePill(m)}</span></div>
-      <div class="meta"><span><b>When</b> ${short(m.date)}</span><span><b>Sponsor attendance</b> ${U.esc(m.sponsor)}</span></div>
+      <div class="meta"><span><b>When</b> ${short(m.date)}${m.time ? `, ${U.esc(m.time)} PT` : ""}</span><span><b>Sponsor attendance</b> ${U.esc(m.sponsor)}</span></div>
       <p style="margin:0">${U.esc(m.detail)}</p></div>`;
   }
 

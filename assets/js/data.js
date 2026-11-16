@@ -18,10 +18,11 @@ window.CAPSTONE = Object.freeze({
   tagline: "Student teams investigate a problem, define a product, and build and test a working prototype.",
   tentativeNote: "Winter 2027 dates are tentative, projected from the Winter 2026 schedule. Confirmed dates will be posted here.",
 
-  // Each quarter has 10 instructional weeks + finals week. `start` must be a Monday.
+  // Each quarter's last week is finals week. `start` must be a Monday.
+  // Autumn runs 12 weeks: instruction starts mid-week (Sep 30) and finals week is Dec 14–18.
   quarters: [
     { id: "autumn", label: "Autumn 2026", short: "Autumn", course: "TECHIN 540", name: "Launch Studio I",
-      phase: "Research & product definition", start: "2026-09-28", weeks: 11, weights: { gates: 26, presentations: 14 } },
+      phase: "Research & product definition", start: "2026-09-28", weeks: 12, weights: { gates: 26, presentations: 14 } },
     { id: "winter", label: "Winter 2027", short: "Winter", course: "TECHIN 542", name: "Launch Studio II",
       phase: "Build, test & iterate", start: "2027-01-04", weeks: 11, weights: { gates: 35, presentations: 15 } },
   ],
@@ -34,12 +35,12 @@ window.CAPSTONE = Object.freeze({
     { quarter: "winter", name: "Prototype transfer", text: "Transfer the project archive and proposed launch plan to the sponsor." },
   ],
 
-  // Sponsor calendar. `assignment` links to a gate or presentation id in assignments.js.
+  // Sponsor calendar. `assignment` links to a gate or presentation id in assignments.js. `time` (optional) is shown as written, in PT.
   // `sponsor` is the attendance expectation: "Optional", "Encouraged", or "Required" (the Final Launch Showcase).
   milestones: [
     { date: "2026-11-12", title: "Autumn mid-term review", assignment: "techin-540-mid-term-presentation", sponsor: "Optional",
       detail: "Teams present the problem, user, and market, plus their research plan in progress." },
-    { date: "2026-12-10", title: "End of Autumn Quarter Presentation", assignment: "techin-540-final-presentation", sponsor: "Optional",
+    { date: "2026-12-14", time: "10:30 am – 2 pm", title: "End of Autumn Quarter Presentation", assignment: "techin-540-final-presentation", sponsor: "Optional",
       detail: "Research findings, the MVP definition, and the launch strategy, discussed with instructors and sponsors. Sponsors may join virtually; the presentation schedule is coming soon." },
     { date: "2027-01-13", title: "Integration review", assignment: "gate-7", sponsor: "Optional", tentative: true,
       detail: "Subsystem map, each student's Minimum Working System, and a first-pass integration plan." },
@@ -267,7 +268,7 @@ window.CAPSTONE = Object.freeze({
     // Winter windows are projected like the winter milestones; update them with the Winter 2027 schedule.
     windows: [
       { quarter: "autumn", label: "Autumn check-in 1", opens: "2026-11-12", closes: "2026-11-20", after: "Autumn mid-term review" },
-      { quarter: "autumn", label: "Autumn check-in 2", opens: "2026-12-10", closes: "2026-12-18", after: "End of Autumn Quarter Presentation" },
+      { quarter: "autumn", label: "Autumn check-in 2", opens: "2026-12-14", closes: "2026-12-22", after: "End of Autumn Quarter Presentation" },
       { quarter: "winter", label: "Winter check-in 1", opens: "2027-02-04", closes: "2027-02-12", after: "Winter mid-quarter review", tentative: true },
       { quarter: "winter", label: "Winter check-in 2", opens: "2027-03-08", closes: "2027-03-19", after: "Final Launch Showcase", tentative: true },
     ],
